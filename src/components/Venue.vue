@@ -119,14 +119,14 @@ export default defineComponent({
                     Let's keep each other safe: Practice social distancing, wash and sanitize your hands frequently, and mask up!
                 </p>
             </q-card-section>
-            <q-card-action align="center">
+            <q-card-actions align="center">
                 <q-btn
                     flat
                     color="primary"
                     label="Close"
                     class="text-uppercase"
                     @click="closeDialog"/>
-            </q-card-action>
+            </q-card-actions>
         </q-card>
     </q-dialog>
 </template>

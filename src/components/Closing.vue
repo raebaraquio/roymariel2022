@@ -1,11 +1,3 @@
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'Closing'
-})
-</script>
-
 <template>
     <div class="bg-lcream q-py-lg q-px-lg text-dbg q-pb-xl"
         id="closing">
@@ -22,3 +14,11 @@ export default defineComponent({
         </p>
     </div>
 </template>
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'Closing'
+})
+</script>

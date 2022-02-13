@@ -1,11 +1,3 @@
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'Hashtag'
-})
-</script>
-
 <template>
     <div class="bg-lblue q-py-lg q-px-lg text-dbg q-pb-xl"
         id="hashtag">
@@ -27,3 +19,11 @@ export default defineComponent({
         </div>
     </div>
 </template>
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'Hashtag'
+})
+</script>

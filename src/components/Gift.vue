@@ -1,11 +1,3 @@
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'Gift'
-})
-</script>
-
 <template>
     <div class="bg-lcream text-dbg q-py-lg q-px-md"
         id="gift">
@@ -23,3 +15,11 @@ export default defineComponent({
         </q-card> -->
     </div>
 </template>
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'Gift'
+})
+</script>

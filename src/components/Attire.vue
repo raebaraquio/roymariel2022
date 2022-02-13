@@ -1,10 +1,3 @@
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'Attire'
-})
-</script>
 
 <template>
     <div class="bg-lblue q-pt-lg q-pb-xl text-dbg q-px-md"
@@ -52,5 +45,13 @@ export default defineComponent({
         <p class="text-center q-mt-md">
             We'll be at an outdoor garden venue, so wear comfy footwear, like flats or block heels!
         </p>
-        </div>
+    </div>
 </template>
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'Attire'
+})
+</script>
