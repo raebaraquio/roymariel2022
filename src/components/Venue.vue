@@ -45,28 +45,29 @@ export default defineComponent({
         <p class="q-px-lg">
             We want you to be there with us as we say our "I Do's", and to join us as we celebrate our new beginning together!
         </p>
-        <div class="row items-center justify-center fit wrap">
+        <div class="gt-sm row items-center justify-center fit wrap">
             <q-card flat square
                 class="bg-lcream text-center text-dbg col-4 col-md-4 col-lg-4 col-sm-12 col-xs-12">
                 <q-card-section class="q-pb-xs">
-                    <span class="text-bold">CEREMONY</span><br/>
+                    <span
+                        @click="showDialog('ceremony')">CEREMONY</span><br/>
                     <div class="cursor-pointer"
-                        @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')">Iglesia ni Cristo CVM | Tagaytagy, Cavite</div>
-                    <h5 class="text-h5 q-my-none">2PM</h5>
-                    <!-- <a class="text-info cursor-pointer"
-                    @click="showDialog('ceremony')">Reminders</a> -->
+                        @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')">Iglesia ni Cristo CVM | Tagaytay, Cavite</div>
+                    <span class="q-my-none">2PM</span>
                 </q-card-section>
                 <q-card-section class="q-pt-none">
-                    <!-- QR CODE -->
-                    <q-img
-                        src="EVM_QR.png"
-                        :transition="'fade'"
-                        class="text-center cursor-pointer"
-                        align="center"
-                        spinner-color="white"
-                        :fit="'contain'"
-                        @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')"
-                        style="max-width: 275px"/>
+                    <div class="text-center bg-grey-2 q-pa-sm rounded-borders"
+                        style="margin:auto;max-width: 170px">
+                        <q-img
+                            src="EVM_QR.png"
+                            :transition="'fade'"
+                            class="text-center cursor-pointer"
+                            align="center"
+                            spinner-color="white"
+                            :fit="'contain'"
+                            @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')"
+                            style="max-width: 170px"/>
+                    </div>
                 </q-card-section>
                 <q-card-actions  class="q-pt-none gt-sm" align="center">
                     <q-btn dense
@@ -80,24 +81,93 @@ export default defineComponent({
             <q-card flat square
                 class="bg-lcream text-center text-dbg col-4 col-md-4 col-lg-4 col-sm-12 col-xs-12">
                 <q-card-section class="q-pb-xs">
-                    <span class="text-bold">RECEPTION</span><br/>
+                    <span
+                        @click="showDialog('reception')">RECEPTION</span><br/>
                     <div class="curspor-pointer" @click="openLoc('https://goo.gl/maps/kd8YUP69hPB6eESN6')">Farm Hills Garden | Silang, Cavite</div>
-                    <h5 class="text-h5 q-my-none">4PM</h5>
-                    <!-- <a class="text-info cursor-pointer"
-                    @click="showDialog('reception')">Reminders</a> -->
+                    <span class="q-my-none">4PM</span>
                 </q-card-section>
                 <q-card-section class="q-pt-none">
-                    <q-img
-                        src="Farm-Hills_QR.png"
-                        :transition="'fade'"
-                        class="text-center"
-                        align="center"
-                        spinner-color="white"
-                        :fit="'contain'"
-                        @click="openLoc('https://goo.gl/maps/kd8YUP69hPB6eESN6')"
-                        style="max-width: 275px"/>
+                    <div class="text-center bg-grey-2 q-pa-sm rounded-borders"
+                        style="margin:auto;max-width: 170px">
+                        <q-img
+                            src="Farm-Hills_QR.png"
+                            :transition="'fade'"
+                            class="text-center"
+                            align="center"
+                            spinner-color="white"
+                            :fit="'contain'"
+                            @click="openLoc('https://goo.gl/maps/kd8YUP69hPB6eESN6')"
+                            style="max-width: 170px"/>
+                    </div>
                 </q-card-section>
                 <q-card-actions class="q-pt-none gt-sm" align="center">
+                    <q-btn dense
+                        color="secondary"
+                        class="text-capitalize"
+                        @click="showDialog('reception')"
+                        label="Reminders" />
+                </q-card-actions>
+            </q-card>
+        </div>
+        <div class="lt-md">
+            <q-card flat square
+                class="bg-lcream text-center text-dbg">
+                <q-card-section class="q-pb-xs">
+                    <span
+                        @click="showDialog('ceremony')">CEREMONY</span><br/>
+                    <div class="cursor-pointer"
+                        @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')">Iglesia ni Cristo CVM | Tagaytay, Cavite</div>
+                    <span class="q-my-none">2PM</span>
+                </q-card-section>
+                <q-card-section class="q-pt-none">
+                    <div class="text-center bg-grey-2 q-pa-sm rounded-borders"
+                        style="margin:auto;max-width: 170px">
+                        <q-img
+                            src="EVM_QR.png"
+                            :transition="'fade'"
+                            class="text-center cursor-pointer"
+                            align="center"
+                            spinner-color="white"
+                            :fit="'contain'"
+                            @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')"
+                            style="max-width: 170px"/>
+                    </div>
+                </q-card-section>
+                <q-card-actions  class="q-pt-none" align="center">
+                    <q-btn dense
+                        color="secondary"
+                        class="text-capitalize"
+                        @click="showDialog('ceremony')"
+                        label="Reminders" />
+                </q-card-actions>
+            </q-card>
+
+            <q-separator inset
+                class="q-my-sm"/>
+
+            <q-card flat square
+                class="bg-lcream text-center text-dbg">
+                <q-card-section class="q-pb-xs">
+                    <span
+                        @click="showDialog('reception')">RECEPTION</span><br/>
+                    <div class="curspor-pointer" @click="openLoc('https://goo.gl/maps/kd8YUP69hPB6eESN6')">Farm Hills Garden | Silang, Cavite</div>
+                    <span class="q-my-none">4PM</span>
+                </q-card-section>
+                <q-card-section class="q-pt-none">
+                    <div class="text-center bg-grey-2 q-pa-sm rounded-borders"
+                        style="margin:auto;max-width: 170px">
+                        <q-img
+                            src="Farm-Hills_QR.png"
+                            :transition="'fade'"
+                            class="text-center"
+                            align="center"
+                            spinner-color="white"
+                            :fit="'contain'"
+                            @click="openLoc('https://goo.gl/maps/kd8YUP69hPB6eESN6')"
+                            style="max-width: 170px"/>
+                    </div>
+                </q-card-section>
+                <q-card-actions class="q-pt-none" align="center">
                     <q-btn dense
                         color="secondary"
                         class="text-capitalize"

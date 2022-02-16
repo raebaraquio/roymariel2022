@@ -3,8 +3,8 @@
     <div class="bg-toolbar q-py-lg q-px-lg q-pb-xl"
         id="playlist">
         <p class="text-white q-px-lg">
-            We know you've waited almost as long as we have for this special moment. <br />
-            And we really want it to be extra special by asking you to join us on dance floor too!
+            We know you've waited almost as long as <br/>we have for this special moment. <br />
+            And we really want it to be extra special <br/>by asking you to join us on dance floor too.
         </p>
         <div class="q-pt-md text-center">
             <div class="text-white text-uppercase q-mb-xs"
@@ -65,7 +65,6 @@ export default defineComponent({
     const isLoading = ref(false)
 
     const addPlaylist = async () => {
-      isLoading.value = true
       const playlistData = {}
       if (song.value && song.value.trim().length > 0) {
         playlistData.song = song.value.trim()
@@ -74,27 +73,33 @@ export default defineComponent({
         playlistData.artist = artist.value.trim()
       }
       if (Object.keys(playlistData).length > 0) {
-        const { addResponse, addError } = await supabase
+        isLoading.value = true
+        const addResponse = await supabase
           .from('playlist')
           .insert([
             playlistData
           ])
 
-        if (addError) {
-          console.log(addError)
+        isLoading.value = false
+        if (addResponse.error) {
+          $q.notify({
+            message: `Ooops! An error occurred while processing your reply. Please try again. (Error: ${addResponse.statusText})`,
+            multiLine: true,
+            color: 'negative',
+            timeout: 2300
+          })
+          return false
         } else {
-          console.log(addResponse)
           $q.notify({
             message: 'Entry submitted. Thank you for answering!',
             multiLine: true,
-            color: 'positive'
+            color: 'positive',
+            timeout: 2200
           })
           // Clear field inputs
           artist.value = ''
           song.value = ''
         }
-
-        isLoading.value = false
       }
     }
 

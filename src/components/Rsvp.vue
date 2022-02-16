@@ -21,7 +21,7 @@
                 color="positive"
                 checked-icon="task_alt"
                 unchecked-icon="panorama_fish_eye" val="Not Going"
-                label="Sorry, can't make it." />
+                label="Sorry, I can't make it." />
             </div>
           </div>
           <div class="text-left q-my-md">
@@ -84,7 +84,7 @@
         </q-card-actions>
     </q-card>
     <q-card v-if="responseMsg !== ''">
-<q-card-section  class="text-dbg text-center">
+      <q-card-section  class="text-dbg text-center">
           <span class="text-bold text-h6 text-dbg"
             v-if="responseMsg === 'going'">Hey, we're excited <br/> to celebrate with you!</span>
           <span class="text-dbg"
@@ -146,18 +146,26 @@ export default defineComponent({
 
       isLoading.value = true
 
+      /** Check if mobile number is existing */
       const response = await supabase
         .from('rsvp')
         .select('mobile_number, id, first_name, last_name, is_going')
         .eq('mobile_number', `+63${formData.mobile.trim()}`)
 
       if (response.error) {
+        $q.notify({
+          message: `Ooops! An error occurred while processing your reply. Please try again. (Error: ${response.statusText})`,
+          multiLine: true,
+          color: 'negative',
+          timeout: 2300
+        })
         return false
       }
 
       const data = response.data
+
+      /** If existing: update */
       if (data.length > 0 && data.length === 1) {
-        // Update
         const updateResponse = await supabase
           .from('rsvp')
           .update({
@@ -170,6 +178,12 @@ export default defineComponent({
 
         isLoading.value = false
         if (updateResponse.error) {
+          $q.notify({
+            message: `Ooops! An error occurred while processing your reply. Please try again. (Error: ${updateResponse.statusText})`,
+            multiLine: true,
+            color: 'negative',
+            timeout: 2300
+          })
           return false
         }
 
@@ -183,6 +197,7 @@ export default defineComponent({
         return false
       }
 
+      /** else: add */
       const addResponse = await supabase
         .from('rsvp')
         .insert([
@@ -196,7 +211,12 @@ export default defineComponent({
 
       isLoading.value = false
       if (addResponse.error) {
-        console.log(addResponse.error)
+        $q.notify({
+          message: `Ooops! An error occurred while processing your reply. Please try again. (Error: ${addResponse.statusText})`,
+          multiLine: true,
+          color: 'negative',
+          timeout: 2300
+        })
         return
       }
 

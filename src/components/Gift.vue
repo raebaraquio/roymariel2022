@@ -5,7 +5,7 @@
             Your presence at our wedding is enough.
         </p>
         <p class="q-pb-none q-mb-none">
-            But if you wish to help us celebrate with a gift, a small contribution to add to our savings pot would truly mean a lot!
+            But if you wish to help us celebrate with a gift, <br/> a small contribution to add to our savings pot <br/>would truly mean a lot!
         </p>
         <div class="q-mt-none">
             <q-img src="GIFTS.png"

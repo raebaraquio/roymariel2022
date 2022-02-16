@@ -12,7 +12,7 @@
             Please RSVP on/before
         </div>
         <p class="text-h5 q-pb-lg">
-            March 15, 2022
+            March 12, 2022
         </p>
     </div>
 </template>
