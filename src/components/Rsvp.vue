@@ -83,12 +83,18 @@
                 style="max-width:360px"/>
         </q-card-actions>
     </q-card>
-    <q-card v-if="responseMsg === 'going'">
-      <q-card-section  class="text-dbg text-center">
-          <span class="text-bold text-h6 text-dbg">Hey, we're excited <br/> to celebrate with you!</span>
+    <q-card v-if="responseMsg !== ''">
+<q-card-section  class="text-dbg text-center">
+          <span class="text-bold text-h6 text-dbg"
+            v-if="responseMsg === 'going'">Hey, we're excited <br/> to celebrate with you!</span>
+          <span class="text-dbg"
+            v-if="responseMsg === 'sorry'">Sad to hear that <br/>you won't be able to join us.</span>
       </q-card-section>
       <q-card-section  class="text-dbg text-center q-pt-none">
-          <span class="text-dbg">Message us on Facebook <br/>and Instagram if you have questions.</span>
+          <span class="text-dbg"
+            v-if="responseMsg === 'going'">Message us on Facebook <br/>and Instagram if you have questions.</span>
+          <span class="text-dbg text-h6"
+            v-if="responseMsg === 'sorry'">Should you wish to change your mind, you have until March 15. <br/> Otherwise, we will catch up next time!</span>
       </q-card-section>
         <q-card-actions align="center" class="q-pt-none q-pb-md">
             <q-btn
@@ -122,23 +128,8 @@ export default defineComponent({
       isGoing: ''
     })
 
-    // onMounted(async () => {
-    //   const { data, error } = await supabase
-    //     .from('rsvp')
-    //     .select('mobile_number, id, first_name, last_name, is_going')
-    //     .eq('mobile_number', '+639278314161')
-
-    //   if (error) {
-    //     console.log(error)
-    //   } else {
-    //     console.log(data)
-    //   }
-    // })
-
     const submit = async () => {
       responseMsg.value = ''
-
-      // console.log(formData)
 
       if (formData.isGoing === '' ||
           formData.lastName === '' ||
@@ -154,20 +145,20 @@ export default defineComponent({
       }
 
       isLoading.value = true
-      const { data, error } = await supabase
+
+      const response = await supabase
         .from('rsvp')
         .select('mobile_number, id, first_name, last_name, is_going')
         .eq('mobile_number', `+63${formData.mobile.trim()}`)
 
-      if (error) {
-        console.log(error)
+      if (response.error) {
         return false
       }
 
-      console.log(data)
+      const data = response.data
       if (data.length > 0 && data.length === 1) {
         // Update
-        const { updateResponse, updateError } = await supabase
+        const updateResponse = await supabase
           .from('rsvp')
           .update({
             first_name: formData.firstName.trim().toUpperCase(),
@@ -177,21 +168,22 @@ export default defineComponent({
           })
           .eq('id', data[0].id)
 
-        if (updateError) {
-          console.log(updateError)
-        } else {
-          console.log(updateResponse)
+        isLoading.value = false
+        if (updateResponse.error) {
+          return false
+        }
+
+        if (updateResponse.status === 200) {
           if (formData.isGoing === 'Going') {
             responseMsg.value = 'going'
           } else {
             responseMsg.value = 'sorry'
           }
         }
-        isLoading.value = false
         return false
       }
 
-      const { addResponse, addError } = await supabase
+      const addResponse = await supabase
         .from('rsvp')
         .insert([
           {
@@ -202,17 +194,17 @@ export default defineComponent({
           }
         ])
 
-      if (addError) {
-        console.log(addError)
-      } else {
-        console.log(addResponse)
-        if (formData.isGoing === 'Going') {
-          responseMsg.value = 'going'
-        } else {
-          responseMsg.value = 'sorry'
-        }
-      }
       isLoading.value = false
+      if (addResponse.error) {
+        console.log(addResponse.error)
+        return
+      }
+
+      if (formData.isGoing === 'Going') {
+        responseMsg.value = 'going'
+      } else {
+        responseMsg.value = 'sorry'
+      }
     }
 
     const mobilePattern = /\d{10}$/gm
