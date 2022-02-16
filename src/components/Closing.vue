@@ -4,12 +4,14 @@
         <p class="text-h5">
             We can't wait to have you there on our big day!
         </p>
-        <div class="q-my-xl">
+        <div class="q-my-lg">
+            <q-img src="Closing-Mono.png"
+                style="max-width: 300px"/>
         </div>
         <div>
             Please RSVP on/before
         </div>
-        <p class="text-h5">
+        <p class="text-h5 q-pb-lg">
             March 15, 2022
         </p>
     </div>

@@ -6,6 +6,10 @@
             Please come in
         </p>
         <span class="text-h5 text-center q-mt-none">Formal Garden Attire</span>
+        <div class="q-mt-lg">
+            <q-img src="Attire.png"
+                style="max-width:265px"/>
+        </div>
 
         <div class="row no-padding">
             <q-card flat square
@@ -26,19 +30,19 @@
                 </q-card-section>
             </q-card>
         </div>
-        <div class="text-dbg text-center">
-            <div class="row colors-bg rounded-borders q-px-md q-py-xs"
-                style="max-width: 80vw;margin:auto; border-radius:1rem">
+        <div class="text-dbg text-center row">
+            <div class="col-9 col-md-6 col-sm-10 col-xs-11 row colors-bg rounded-borders q-px-md q-py-xs"
+                style="margin:auto; border-radius:1rem">
                 <div class="col">
                     <span class="text-h6 text-uppercase"
                     style="letter-spacing:2px">Colors</span>
                 </div>
-                <div class="col text-left q-pt-xs q-gutter-xs">
-                <q-btn round flat size="xs" class="color-1"></q-btn>
-                <q-btn round flat size="xs" class="color-2"></q-btn>
-                <q-btn round flat size="xs" class="color-3"></q-btn>
-                <q-btn round flat size="xs" class="color-4"></q-btn>
-                <q-btn round flat size="xs" class="color-5"></q-btn>
+                <div class="col text-left q-pt-xs q-gutter-sm">
+                    <q-btn round flat size="xs" class="color-1"></q-btn>
+                    <q-btn round flat size="xs" class="color-2"></q-btn>
+                    <q-btn round flat size="xs" class="color-3"></q-btn>
+                    <q-btn round flat size="xs" class="color-4"></q-btn>
+                    <q-btn round flat size="xs" class="color-5"></q-btn>
                 </div>
             </div>
         </div>

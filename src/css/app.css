@@ -1,4 +1,17 @@
 /* app global css */
+@font-face {
+    font-family: hornbill;
+    src: url('/fonts/Hornbill-Medium.otf');
+}
+@font-face {
+    font-family: dancinglove;
+    src: url('/fonts/Dancinglove.otf');
+}
+
+body, html {
+    font-family: hornbill;
+    /* overflow-x:hidden; */
+}
 
 .bg-main {
     height: 100vh;
@@ -31,7 +44,7 @@
 }
 
 .color-1 {
-    background-color: #fff4e3;
+    background-color: #fff7ea;
 }
 .color-2 {
     background-color: #c4c7cc;

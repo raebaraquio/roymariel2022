@@ -2,88 +2,107 @@
 <template>
     <div class="bg-toolbar q-py-lg q-px-lg q-pb-xl"
         id="playlist">
-        <p class="text-white">
-            We know you've waited almost as long as we have for this special moment.
+        <p class="text-white q-px-lg">
+            We know you've waited almost as long as we have for this special moment. <br />
             And we really want it to be extra special by asking you to join us on dance floor too!
         </p>
-        <div class="q-pt-md">
+        <div class="q-pt-md text-center">
             <div class="text-white text-uppercase q-mb-xs"
             style="letter-spacing:1px;">Song/s that will get you on your feet</div>
-            <q-input filled dense class="bg-white rounded-borders"
+            <q-input filled dense class="bg-white rounded-borders q-pr-none"
                 v-model="song"
-                @keypress.enter="addSong">
-                <template v-slot:append>
-                    <q-btn flat label="Submit" class="no-capitalize"
+                style="max-width: 400px; margin:auto">
+                <!-- @keypress.enter="addSong" -->
+                <!-- <template v-slot:append>
+                    <q-separator vertical inset class="q-mr-sm"/>
+                    <q-btn flat dense
+                      color="primary" label="Submit"
+                      class="text-capitalize q-px-md"
                     @click="addSong"/>
-                </template>
+                </template> -->
             </q-input>
         </div>
-        <div class="q-pt-lg">
+        <div class="q-pt-lg text-center">
             <div class="text-white text-uppercase q-mb-xs"
             style="letter-spacing:1px;">Artists/Singers that'll keep you singing and dancing all night</div>
             <q-input filled dense class="bg-white rounded-borders"
                 v-model="artist"
-                @keypress.enter="addArtist">
-                <template v-slot:append>
-                    <q-btn flat label="Submit" class="no-capitalize"
+                @keypress.enter="addPlaylist"
+                style="max-width: 400px; margin:auto">
+                <!--  -->
+                <!-- <template v-slot:append>
+                    <q-separator vertical inset class="q-mr-sm"/>
+                    <q-btn flat dense label="Submit"
+                      color="primary"
+                      class="text-capitalize q-px-md"
                     @click="addArtist"/>
-                </template>
+                </template> -->
             </q-input>
+        </div>
+        <div class="q-mt-lg text-center">
+            <q-btn
+              color="secondary" label="Submit"
+              class="text-capitalize q-px-xl"
+              :disabled="isLoading"
+              :loading="isLoading"
+              @click="addPlaylist"/>
         </div>
     </div>
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from 'vue'
-// import { useClient } from '@vueauth/supabase'
+import { defineComponent, ref } from 'vue'
+import { useClient } from '@vueauth/supabase'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'Playlist',
   setup () {
-    // const supabase = useClient()
+    const $q = useQuasar()
+    const supabase = useClient()
     const song = ref('')
     const artist = ref('')
+    const isLoading = ref(false)
 
-    onMounted(async () => {
-    //   const { data, error } = await supabase
-    //     .from('songs')
-    //     .select()
-
-    //   console.log(data)
-    //   console.log(error)
-    })
-
-    const addSong = async () => {
+    const addPlaylist = async () => {
+      isLoading.value = true
+      const playlistData = {}
       if (song.value && song.value.trim().length > 0) {
-        // const { addResponse, addError } = await supabase
-        //   .from('songs')
-        //   .insert([
-        //     { song: song.value.trim() }
-        //   ])
-
-        // console.log(addResponse)
-        // console.log(addError)
+        playlistData.song = song.value.trim()
       }
-    }
-
-    const addArtist = async () => {
       if (artist.value && artist.value.trim().length > 0) {
-        // const { addResponse, addError } = await supabase
-        //   .from('artists')
-        //   .insert([
-        //     { artist: artist.value.trim() }
-        //   ])
+        playlistData.artist = artist.value.trim()
+      }
+      if (Object.keys(playlistData).length > 0) {
+        const { addResponse, addError } = await supabase
+          .from('playlist')
+          .insert([
+            playlistData
+          ])
 
-        // console.log(addResponse)
-        // console.log(addError)
+        if (addError) {
+          console.log(addError)
+        } else {
+          console.log(addResponse)
+          $q.notify({
+            message: 'Entry submitted. Thank you for answering!',
+            multiLine: true,
+            color: 'positive'
+          })
+          // Clear field inputs
+          artist.value = ''
+          song.value = ''
+        }
+
+        isLoading.value = false
       }
     }
 
     return {
+      isLoading,
       song,
       artist,
-      addSong,
-      addArtist
+      addPlaylist
     }
   }
 })
