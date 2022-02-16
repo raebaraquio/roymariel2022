@@ -74,10 +74,11 @@
                 @click="submit"
                 style="max-width:360px"/>
             <q-btn
-                color="grey-3" label="Close"
+                flat
+                label="Close"
                 unelevated
-                text-color="secondary"
-                class="text-capitalize q-px-xl full-width q-mt-md"
+                color="secondary"
+                class="text-capitalize q-px-xl full-width q-mt-sm"
                 :disabled="isLoading"
                 @click="$emit('close')"
                 style="max-width:360px"/>

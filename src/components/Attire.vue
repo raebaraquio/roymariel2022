@@ -17,7 +17,7 @@
                 <q-card-section class="text-right q-pl-none">
                     <span class="text-dbg text-uppercase" style="letter-spacing:1px;">Gentlemen</span> <br/>
                     <span class="text-bold text-dbg" style="font-size:1.05rem;">Suit and Tie or <br/>Long Sleeves Polo</span> <br />
-                    <span class="text-caption">No jeans, rubber shoes or sneakers</span>
+                    <span class="text-caption">No jeans, rubber <br/>shoes or sneakers</span>
                 </q-card-section>
             </q-card>
 
@@ -27,7 +27,7 @@
                 class="col text-left text-dbg bg-lblue">
                 <q-card-section class="text-left q-pr-none">
                     <span class="text-dbg text-uppercase" style="letter-spacing:1px;">Ladies</span> <br/>
-                    <span class="text-bold text-dbg" style="font-size:1.05rem;">Maxi/Long Dress or Cocktail Dress</span> <br />
+                    <span class="text-bold text-dbg" style="font-size:1.05rem;">Maxi/Long Dress <br/>or Cocktail Dress</span> <br />
                     <span class="text-caption">No pants or <br/>jumpsuit</span>
                 </q-card-section>
             </q-card>
