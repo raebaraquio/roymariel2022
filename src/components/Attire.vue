@@ -11,7 +11,7 @@
                 style="max-width:140px"/>
         </div>
 
-        <div class="row no-padding">
+        <div class="row no-padding q-mt-sm">
             <q-card flat square
                 class="col text-right no-padding text-dbg bg-lblue">
                 <q-card-section class="text-right q-pl-none">
@@ -33,11 +33,11 @@
             </q-card>
         </div>
         <div class="text-dbg text-center row q-py-md">
-            <div class="col-9 col-md-6 col-sm-10 col-xs-11 row colors-bg rounded-borders q-px-md q-py-xs"
+            <div class="col-9 col-md-4 col-sm-10 col-xs-11 row colors-bg rounded-borders q-px-md q-py-xs"
                 style="margin:auto; border-radius:1rem">
                 <div class="col">
-                    <span class="text-h6 text-uppercase"
-                    style="letter-spacing:2px">Colors</span>
+                    <div class="text-h6 text-uppercase"
+                    style="letter-spacing:2px">Colors</div>
                 </div>
                 <div class="lt-md col text-left q-pt-xs q-gutter-xs">
                     <q-btn round flat size="xs" class="color-1"></q-btn>

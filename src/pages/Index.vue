@@ -25,22 +25,23 @@
     </div>
 
     <q-footer elevated>
-        <q-toolbar class="bg-toolbar">
-            <q-img src="RM_LOGO.png"
-                style="max-width:45px;"/>
-            <q-toolbar-title
-                class="q-ml-none text-white text-uppercase
-                    vertical-middle"
-                    style="min-width:168px">
-                April 1, 2022
-            </q-toolbar-title>
-            <!-- <q-space /> -->
-            <q-btn
-                color="secondary"
-                label="RSVP"
-                class="text-capitalize"
-                style="letter-spacing:1px"
-                @click="toggleRsvp"/>
+        <q-toolbar class="bg-toolbar rows items-center content-between">
+            <div class="col text-left">
+              <q-img src="RM_LOGO.png"
+                  style="max-width:45px;"/>
+            </div>
+            <div class="col-auto text-center">
+              <span class="text-white"
+                style="font-size:1.25rem;letter-spacing:1px">April 1, 2022</span>
+            </div>
+            <div class="col text-right">
+              <q-btn
+                  color="secondary"
+                  label="RSVP"
+                  class="text-capitalize"
+                  style="letter-spacing:1px"
+                  @click="toggleRsvp"/>
+            </div>
         </q-toolbar>
     </q-footer>
 

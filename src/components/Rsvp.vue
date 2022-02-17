@@ -30,19 +30,25 @@
               <q-input
                 filled
                 dense
+                clearable
+                bg-color="grey-3"
                 label="First Name"
-                class="col-12 col-2-lg col-2-md col-2-xl bg-white rounded-borders"
-                :rules="[val => !!val || 'First name is required']"
+                class="col-12 col-2-lg col-2-md col-2-xl rounded-borders q-mb-md"
+                :rules="[val => !!val || 'First name is required', nameLength]"
                 v-model="formData.firstName"
+                :maxlength="50"
                 style="max-width:350px">
               </q-input>
               <q-input
                 filled
                 dense
+                clearable
+                bg-color="grey-3"
                 label="Last Name"
-                class="col-12 col-2-lg col-2-md col-2-xl bg-white rounded-borders"
-                :rules="[val => !!val || 'Last name is required']"
+                class="col-12 col-2-lg col-2-md col-2-xl rounded-borders"
+                :rules="[val => !!val || 'Last name is required', nameLength]"
                 v-model="formData.lastName"
+                :maxlength="50"
                 style="max-width:350px">
               </q-input>
             </div>
@@ -53,10 +59,13 @@
               <q-input
                 filled
                 dense
+                clearable
+                bg-color="grey-3"
                 placeholder="9XXXXXXXXX"
-                class="col col-12-xs col-12-sm col-12-md bg-white rounded-borders"
+                :maxlength="10"
+                class="col col-12-xs col-12-sm col-12-md rounded-borders"
                 v-model="formData.mobile"
-                :rules="[mobileFormat, required]"
+                :rules="[mobileFormat, required, mobileLength]"
                 style="max-width:350px">
                 <template v-slot:prepend>
                   <span class="text-caption">+63</span>
@@ -65,10 +74,11 @@
             </div>
           </div>
         </q-card-section>
+        <q-separator inset class="q-mt-sm q-mb-sm"/>
         <q-card-actions align="center" class="q-pt-xs q-pb-md">
             <q-btn
                 color="secondary" label="Submit"
-                class="text-capitalize q-px-xl full-width"
+                class="text-capitalize q-px-xl full-width q-mb-xs"
                 :disabled="isLoading"
                 :loading="isLoading"
                 @click="submit"
@@ -78,7 +88,7 @@
                 label="Close"
                 unelevated
                 color="secondary"
-                class="text-capitalize q-px-xl full-width q-mt-sm"
+                class="text-capitalize q-px-xl bg-grey-2 full-width q-mt-sm"
                 :disabled="isLoading"
                 @click="$emit('close')"
                 style="max-width:360px"/>
@@ -88,14 +98,14 @@
       <q-card-section  class="text-dbg text-center">
           <span class="text-bold text-h6 text-dbg"
             v-if="responseMsg === 'going'">Hey, we're excited <br/> to celebrate with you!</span>
-          <span class="text-dbg"
-            v-if="responseMsg === 'sorry'">Sad to hear that <br/>you won't be able to join us.</span>
+          <span class="text-dbg text-h6"
+            v-if="responseMsg === 'sorry'">Thanks for letting us know!</span>
       </q-card-section>
       <q-card-section  class="text-dbg text-center q-pt-none">
           <span class="text-dbg"
-            v-if="responseMsg === 'going'">Message us on Facebook <br/>and Instagram if you have questions.</span>
-          <span class="text-dbg text-h6"
-            v-if="responseMsg === 'sorry'">Should you wish to change your mind, you have until March 15. <br/> Otherwise, we will catch up next time!</span>
+            v-if="responseMsg === 'going'">Message us on Facebook <br/>or Instagram if you have questions.</span>
+          <span class="text-dbg"
+            v-if="responseMsg === 'sorry'">I wish you could be there, but we truly understand. <br/>In case you change your mind, you still have until March 12 to message us.</span>
       </q-card-section>
         <q-card-actions align="center" class="q-pt-none q-pb-md">
             <q-btn
@@ -121,6 +131,7 @@ export default defineComponent({
     const supabase = useClient()
     const isLoading = ref(false)
     const responseMsg = ref('')
+    const mobilePattern = /\d{10}$/gm
 
     const formData = reactive({
       firstName: '',
@@ -138,6 +149,25 @@ export default defineComponent({
           formData.mobile === '') {
         $q.notify({
           message: 'All fields are required. Please check.',
+          multiLine: true,
+          color: 'negative',
+          timeout: 2200
+        })
+        return false
+      }
+
+      if (formData.lastName.length > 40 || formData.firstName.length > 40) {
+        $q.notify({
+          message: 'Unable to submit. Only a maximum of 40 characters is allowed.',
+          multiLine: true,
+          color: 'negative',
+          timeout: 2200
+        })
+        return false
+      }
+      if (!mobilePattern.test(formData.mobile)) {
+        $q.notify({
+          message: 'Please check the format of your mobile number',
           multiLine: true,
           color: 'negative',
           timeout: 2200
@@ -228,13 +258,16 @@ export default defineComponent({
       }
     }
 
-    const mobilePattern = /\d{10}$/gm
-    const mobileFormat = val => mobilePattern.test(val) || 'Please check your mobile number.'
+    const mobileFormat = val => mobilePattern.test(val) || 'Please check the format of your mobile number.'
     const required = val => !!val || 'Mobile number is required'
+    const mobileLength = val => val.length < 11 || 'Character limit reached.'
+    const nameLength = val => val.length < 41 || 'Maximum of 40 characters only.'
 
     return {
       mobileFormat,
       required,
+      nameLength,
+      mobileLength,
       responseMsg,
       formData,
       isLoading,

@@ -149,8 +149,8 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: 'RoyMariel2022',
-        short_name: 'RoyMariel2022',
+        name: '#RoyMariel2022',
+        short_name: '#RoyMariel2022',
         description: 'Roy and Mariel 2022',
         display: 'standalone',
         orientation: 'portrait',
