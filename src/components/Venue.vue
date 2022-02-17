@@ -116,7 +116,7 @@ export default defineComponent({
                     <span
                         @click="showDialog('ceremony')">CEREMONY</span><br/>
                     <div class="cursor-pointer"
-                        @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')">Iglesia ni Cristo CVM | Tagaytay, Cavite</div>
+                        @click="openLoc('https://goo.gl/maps/UYCRoAZBMfgSUTJb7')">Iglesia ni Cristo EVM | Tagaytay, Cavite</div>
                     <span class="q-my-none">2PM</span>
                 </q-card-section>
                 <q-card-section class="q-pt-none">
