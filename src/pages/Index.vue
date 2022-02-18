@@ -4,7 +4,7 @@
       <div class="bg-lblue q-py-xl q-px-md text-dbg"
           id="welcome">
           <span class="text-uppercase" style="letter-spacing:1px">The long wait is over.</span>
-          <p class="text-bold text-h5">This is it — <br />We're finally getting married </p>
+          <p class="text-bold text-h5">This is it — <br />We're finally getting married!</p>
           <div class="text=center">
               <q-card flat square
                   class="transparent q-ma-auto text-center"

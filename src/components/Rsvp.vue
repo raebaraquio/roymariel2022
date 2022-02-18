@@ -105,7 +105,7 @@
           <span class="text-dbg"
             v-if="responseMsg === 'going'">Message us on Facebook <br/>or Instagram if you have questions.</span>
           <span class="text-dbg"
-            v-if="responseMsg === 'sorry'">I wish you could be there, but we truly understand. <br/>In case you change your mind, you still have until March 12 to message us.</span>
+            v-if="responseMsg === 'sorry'">I wish you could be there, <br/>but we truly understand.<br/><br/>In case you change your mind, <br/>you still have until March 12 to message us.</span>
       </q-card-section>
         <q-card-actions align="center" class="q-pt-none q-pb-md">
             <q-btn
