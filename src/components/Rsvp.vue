@@ -131,7 +131,8 @@ export default defineComponent({
     const supabase = useClient()
     const isLoading = ref(false)
     const responseMsg = ref('')
-    const mobilePattern = /\d{10}$/gm
+    // eslint-disable-next-line prefer-regex-literals
+    const mobilePattern = new RegExp(/\d{10}$/gm)
 
     const formData = reactive({
       firstName: '',
@@ -165,9 +166,11 @@ export default defineComponent({
         })
         return false
       }
-      if (!mobilePattern.test(formData.mobile)) {
+
+      const mobile = parseInt(formData.mobile)
+      if ((/[a-zA-Z]/).test(formData.mobile) || mobile === 0 || mobile.toString().length < 10) {
         $q.notify({
-          message: 'Please check the format of your mobile number',
+          message: 'Please check the format of your mobile number.',
           multiLine: true,
           color: 'negative',
           timeout: 2200
